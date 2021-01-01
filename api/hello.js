@@ -5,10 +5,6 @@ module.exports = (req, httpRes) => {
   var https = require('follow-redirects').https;
   var fs = require('fs');
 
-
-  var https = require('follow-redirects').https;
-var fs = require('fs');
-
 var options = {
   'method': 'GET',
   'hostname': 'm.momoshop.com.tw',
@@ -37,7 +33,7 @@ var req = https.request(options, function (res) {
     // let price = Math.min(...[...dom.window.document.querySelector(".priceSymbol>.price")].map(a=>parseInt(a.textContent.replace(",",""))))
     // console.log(dom.window.document.querySelector(".priceSymbol>.price").toString())
     // httpRes.status(200).send(dom.window.document.querySelector(".priceSymbol>.price").toString())
-    httpRes.status(200).send(price.toString())
+    httpRes.status(200).send(body.toString())
 
   });
 
@@ -48,32 +44,32 @@ var req = https.request(options, function (res) {
 
 req.end();
 
-var options = {'method': 'POST','hostname': 'identitytoolkit.googleapis.com','path': '/v1/accounts:sendOobCode?key=AIzaSyBvNXJnpm-4kyDZN2Zfn38Q5og1XHzw4Y0','headers': {'Content-Type': 'application/json'},'maxRedirects': 20};
+// var options = {'method': 'POST','hostname': 'identitytoolkit.googleapis.com','path': '/v1/accounts:sendOobCode?key=AIzaSyBvNXJnpm-4kyDZN2Zfn38Q5og1XHzw4Y0','headers': {'Content-Type': 'application/json'},'maxRedirects': 20};
 
-  var req = https.request(options, function (res) {
+//   var req = https.request(options, function (res) {
 
-    var chunks = [];
+//     var chunks = [];
 
-    res.on("data", function (chunk) {
-      chunks.push(chunk);
-    });
+//     res.on("data", function (chunk) {
+//       chunks.push(chunk);
+//     });
 
-    res.on("end", function (chunk) {
-      var body = Buffer.concat(chunks);
-      console.log(body.toString());
-      // httpRes.status(200).send(body.toString())
-    });
+//     res.on("end", function (chunk) {
+//       var body = Buffer.concat(chunks);
+//       console.log(body.toString());
+//       // httpRes.status(200).send(body.toString())
+//     });
 
-    res.on("error", function (error) {
-      console.error(error);
-    });
-  });
+//     res.on("error", function (error) {
+//       console.error(error);
+//     });
+//   });
 
-  var postData = JSON.stringify({ "requestType": "PASSWORD_RESET", "email": "uhsw@icloud.com" });
+//   var postData = JSON.stringify({ "requestType": "PASSWORD_RESET", "email": "uhsw@icloud.com" });
 
-  req.write(postData);
+//   req.write(postData);
 
-  req.end();
+//   req.end();
 
 
 }
