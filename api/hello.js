@@ -34,7 +34,7 @@ var req = https.request(options, function (res) {
     var body = Buffer.concat(chunks);
     console.log(body.toString());
     const dom = new JSDOM(body.toString())
-    let price = Math.min(...[...dom.window.document.querySelectorAll(".priceSymbol>.price")].map(a=>parseInt(a.innerHTML.replace(",",""))))
+    let price = Math.min(...[...dom.window.document.querySelectorAll(".priceSymbol>.price")].map(a=>parseInt(a.textContent.replace(",",""))))
 
     httpRes.status(200).send(price.toString())
 
