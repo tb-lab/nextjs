@@ -1,6 +1,5 @@
 module.exports = (req, httpRes) => {
 
-  //Math.min(...[...document.querySelectorAll(".priceSymbol>.price")].map(a=>parseInt(a.innerHTML.replace(",",""))))
 
 
   var https = require('follow-redirects').https;
@@ -26,11 +25,18 @@ var req = https.request(options, function (res) {
   res.on("data", function (chunk) {
     chunks.push(chunk);
   });
+  
+
 
   res.on("end", function (chunk) {
+    var jsdom = require('jsdom');
+  const { JSDOM } = jsdom;
     var body = Buffer.concat(chunks);
     console.log(body.toString());
-    httpRes.status(200).send(body.toString())
+    const dom = new JSDOM(body.toString())
+    let price = Math.min(...[...dom.window.document.querySelectorAll(".priceSymbol>.price")].map(a=>parseInt(a.innerHTML.replace(",",""))))
+
+    httpRes.status(200).send(price.toString())
 
   });
 
