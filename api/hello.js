@@ -28,7 +28,7 @@ var req = https.request(options, function (res) {
     var jsdom = require('jsdom');
   const { JSDOM } = jsdom;
     var body = Buffer.concat(chunks);
-    // console.log(body.toString());
+    console.log(body.toString());
     const dom = new JSDOM(body.toString())
     // let price = Math.min(...[...dom.window.document.querySelector(".priceSymbol>.price")].map(a=>parseInt(a.textContent.replace(",",""))))
     // console.log(dom.window.document.querySelector(".priceSymbol>.price").toString())
